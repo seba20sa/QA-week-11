@@ -15,10 +15,18 @@ const user = {
     name: '',
     password: ''
 }
+
+
+/*END POINT REGISTER*/
+app.post('/register', (req, res) => {
+  user.email = req.body.email
+  user.name = req.body.name
+  user.password = req.body.password
+  res.send({ registered: user });
+})
+
 /*END POINT LOGIN*/
-app.put('/login', (req, res) => {
-  // const formLoginEmail = document.getElementById('form-login-email');
-  // const formLoginPassword = document.getElementById('form-login-password');
+app.put('/login', (req, res) => {  
   const verifyUser = {
     email: '',
     password: ''
@@ -32,14 +40,6 @@ app.put('/login', (req, res) => {
   else {
     res.status(404).send({ error: 'Invalid credentials' })
   }
-})
-
-/*END POINT REGISTER*/
-app.post('/register', (req, res) => {
-  user.email = req.body.email
-  user.name = req.body.name
-  user.password = req.body.password
-  res.send({ registered: user });
 })
 
 app.listen(port, () => {
